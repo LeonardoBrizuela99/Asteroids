@@ -4,6 +4,6 @@ using namespace game;
 //Hecho por:Leonardo Brizuela
 	int  main()
 	{
-        runGame();
+        RunGame();
 		return 0;
 	}
