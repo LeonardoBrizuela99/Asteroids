@@ -12,7 +12,7 @@ static void DrawCredit();
 static void GameLoop();
 
 const float SCREEN_WIDTH =1024.0f ;
-const float SCREEN_HEIGTH =700.0f ;
+const float SCREEN_HEIGTH =768.0f ;
 
 static bool exitWindow = false;
 static bool pause = false;
