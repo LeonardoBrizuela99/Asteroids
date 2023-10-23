@@ -2,6 +2,7 @@
 #include"raylib.h"
 #include<iostream>
 #include"Menu.h"
+#include"../Ship.h"
 
 using namespace std;
 
@@ -39,6 +40,7 @@ static void Init()
 	InitWindow(static_cast<int>(SCREEN_WIDTH), static_cast<int>(SCREEN_HEIGTH), "ASTEROIDS");
 	SetExitKey(KEY_NULL);
 	InitializeTexts();
+	
 	
 }
 
