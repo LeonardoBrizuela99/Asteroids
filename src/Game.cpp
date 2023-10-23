@@ -2,7 +2,7 @@
 #include"raylib.h"
 #include<iostream>
 #include"Menu.h"
-#include"../Ship.h"
+
 
 using namespace std;
 
@@ -18,6 +18,7 @@ void UpdateMenu();
 void CreditsWindow();
 void InitializTexts();*/
 
+ SpaceShip ship;
 
 /*static*/ bool exitWindow = false;
 /*static*/ bool pause = false;
@@ -40,8 +41,7 @@ static void Init()
 	InitWindow(static_cast<int>(SCREEN_WIDTH), static_cast<int>(SCREEN_HEIGTH), "ASTEROIDS");
 	SetExitKey(KEY_NULL);
 	InitializeTexts();
-	
-	
+	ship = CreateShip();
 }
 
 /*static*/ void MainLoop()
@@ -56,13 +56,17 @@ static void Init()
 	}
 }
 
- void Update()
+void Update()
 {
-	if (IsKeyPressed('p')|| IsKeyPressed(KEY_ESCAPE))
+	if (IsKeyPressed(KEY_P) || IsKeyPressed(KEY_ESCAPE))
 	{
 		pause = !pause;
 	}
 
+	if (!pause)
+	{
+		UpdateShip(ship);
+	}
 }
 
 /*static*/ void Close()
@@ -76,6 +80,9 @@ static void Init()
 	ClearBackground(RED);
 	DrawRectangle(0, 0, 5, GetScreenHeight(), Fade(WHITE, 1.0f));
 	DrawRectangle(GetScreenWidth() - 5, 0, 5, GetScreenHeight(), Fade(WHITE, 1.0f));
+
+	DrawShip(ship);
+
 	if (pause)
 	{
 		DrawRectangleGradientV(GetScreenWidth() / 2 - 512, GetScreenHeight() / 2 -384 , 1024, 768, BEIGE, Fade(RED, 1.0f));
@@ -83,6 +90,7 @@ static void Init()
 		DrawText("Press (P) (ESC) to continue the game ", GetScreenWidth() / 2 - 360, GetScreenHeight() / 2, 38, WHITE);
 		DrawCredit();
 	}
+	EndDrawing();
 }
 /*static*/ void DrawCredit()
 {
@@ -91,17 +99,18 @@ static void Init()
 
 /*static*/ void GameLoop()
 {
-	if (IsKeyPressed(KEY_ESCAPE)) 
-    {
-		salir = true;
-
-    }else
+	if (IsKeyPressed(KEY_ESCAPE))
 	{
-	Update();
+		pause = !pause;
+		cout << "pausa: " << pause << endl;
+	}
+	else
+	{
+		cout << "pausa="<<pause << endl;
+		Update();
 	}
 	Draw();
 }
-
   void WindowInstructions()
 {
 	BeginDrawing();

@@ -3,6 +3,7 @@
 #include"raylib.h"
 #include<iostream>
 #include"Menu.h"
+#include"Ship.h"
 
 using namespace std;
 /*static*/ void Update();
