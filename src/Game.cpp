@@ -8,7 +8,7 @@ using namespace std;
 static void Init();
 static void MainLoop();
 static void Close();
-static void Update();
+ void Update();
 /*static void Draw();
 static void DrawCredit();
 void GameLoop();
@@ -17,8 +17,6 @@ void UpdateMenu();
 void CreditsWindow();
 void InitializTexts();*/
 
-const float SCREEN_WIDTH =1024.0f ;
-const float SCREEN_HEIGTH =768.0f ;
 
 /*static*/ bool exitWindow = false;
 /*static*/ bool pause = false;
@@ -56,7 +54,7 @@ static void Init()
 	}
 }
 
-/*static*/ void Update()
+ void Update()
 {
 	if (IsKeyPressed('p')|| IsKeyPressed(KEY_ESCAPE))
 	{
@@ -78,7 +76,7 @@ static void Init()
 	DrawRectangle(GetScreenWidth() - 5, 0, 5, GetScreenHeight(), Fade(WHITE, 1.0f));
 	if (pause)
 	{
-		DrawRectangleGradientV(GetScreenWidth() / 2 - 400, GetScreenHeight() / 2 - 300, 850, 600, BEIGE, Fade(RED, 1.0f));
+		DrawRectangleGradientV(GetScreenWidth() / 2 - 512, GetScreenHeight() / 2 -384 , 1024, 768, BEIGE, Fade(RED, 1.0f));
 		DrawText("Pause", GetScreenWidth() / 2 - 140, GetScreenHeight() / 2 - 250, 100, WHITE);
 		DrawText("Press (P) (ESC) to continue the game ", GetScreenWidth() / 2 - 360, GetScreenHeight() / 2, 38, WHITE);
 		DrawCredit();
@@ -106,7 +104,7 @@ static void Init()
 {
 	BeginDrawing();
 
-	DrawRectangleGradientV(GetScreenWidth() / 2 - 400, GetScreenHeight() / 2 - 300, 850, 600, BEIGE, Fade(RED, 1.0f));
+	DrawRectangleGradientV(GetScreenWidth() / 2 - 512, GetScreenHeight() / 2 - 384, 1024, 768, BEIGE, Fade(RED, 1.0f));
 	DrawText("Use Up/Down to move rigth paddles", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 - 10, 40, WHITE);
 	DrawText("Use W/S to move left paddles", GetScreenWidth() / 2 - 300, GetScreenHeight() / 2 - 100, 40, WHITE);
 	DrawText("(ESC) Back", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 + 200, 40, WHITE);
@@ -131,7 +129,7 @@ static void Init()
 {
 	BeginDrawing();
 
-	DrawRectangleGradientV(GetScreenWidth() / 2 - 400, GetScreenHeight() / 2 - 300, 850, 600, BEIGE, Fade(RED, 1.0f));
+	DrawRectangleGradientV(GetScreenWidth() / 2 - 512, GetScreenHeight() / 2 - 384, 1024, 768, BEIGE, Fade(RED, 1.0f));
 	DrawText("Code by: Leonardo Brizuela", GetScreenWidth() / 2 - 300, GetScreenHeight() / 2 - 10, 40, WHITE);
 	DrawText("(ESC) Back", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 + 200, 40, WHITE);
 	EndDrawing();

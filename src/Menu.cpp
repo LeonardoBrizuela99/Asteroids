@@ -4,54 +4,37 @@
 #include"Game.h"
 
 using namespace std;
-//using namespace game;
 
 MenuScenes menu;
 Buttons Texto[4];
+
 extern bool salir;
+static int fontSize = 40;
+static int verticalSpacing = 120;
 
 void InitializeTexts()
 {
-	Texto[0].text = "  PLAY ";
-	Texto[0].fontSize = 40;
-	Texto[0].pos.x = GetScreenWidth() / 2 - MeasureText(Texto[0].text.c_str(), 50) / 2.0f + 12;
-	Texto[0].pos.y = 50;
+	for (int i = 0; i < 4; i++) {
+		
+		string buttonText;
+		if (i == 0) buttonText = "PLAY";
+		else if (i == 1) buttonText = "RULES";
+		else if (i == 2) buttonText = "CREDITS";
+		else if(i==3) buttonText = "  QUIT";
+		
+		float textWidth = static_cast<float>(MeasureText(buttonText.c_str(), fontSize));
+		float textX = static_cast<float>(SCREEN_WIDTH / 2) - textWidth / 2;
+		float textY = static_cast<float>(i * verticalSpacing + 50);
 
-	Texto[0].backgroundBttn.x = GetScreenWidth() / 2.0f - MeasureText(Texto[0].text.c_str(), 50) / 2;
-	Texto[0].backgroundBttn.y = 47;
-	Texto[0].backgroundBttn.width = static_cast<float>(MeasureText(Texto[0].text.c_str(), 50));
-	Texto[0].backgroundBttn.height = 50;
-
-	Texto[1].text = " RULES  ";
-	Texto[1].fontSize = 40;
-	Texto[1].pos.x = GetScreenWidth() / 2 - MeasureText(Texto[0].text.c_str(), 50) / 2.0f + 5;
-	Texto[1].pos.y = 170;
-
-	Texto[1].backgroundBttn.x = GetScreenWidth() / 2.0f - MeasureText(Texto[0].text.c_str(), 50) / 2;
-	Texto[1].backgroundBttn.y = 163;
-	Texto[1].backgroundBttn.width = static_cast<float>(MeasureText(Texto[0].text.c_str(), 50));
-	Texto[1].backgroundBttn.height = 50;
-
-	Texto[2].text = "CREDITS";
-	Texto[2].fontSize = 40;
-	Texto[2].pos.x = GetScreenWidth() / 2 - MeasureText(Texto[1].text.c_str(), 50) / 2.0f + 22;
-	Texto[2].pos.y = 310;
-
-	Texto[2].backgroundBttn.x = GetScreenWidth() / 2.0f - MeasureText(Texto[1].text.c_str(), 50) / 2;
-	Texto[2].backgroundBttn.y = 303;
-	Texto[2].backgroundBttn.width = static_cast<float>(MeasureText(Texto[1].text.c_str(), 50));
-	Texto[2].backgroundBttn.height = 50;
-
-
-	Texto[3].text = "QUIT";
-	Texto[3].fontSize = 40;
-	Texto[3].pos.x = GetScreenWidth() / 2 - MeasureText(Texto[2].text.c_str(), 50) / 2.0f + 13;
-	Texto[3].pos.y = 420;
-
-	Texto[3].backgroundBttn.x = GetScreenWidth() / 2.0f - MeasureText(Texto[2].text.c_str(), 50) / 2;
-	Texto[3].backgroundBttn.y = 415;
-	Texto[3].backgroundBttn.width = static_cast<float>(MeasureText(Texto[2].text.c_str(), 50));
-	Texto[3].backgroundBttn.height = 50;
+		Texto[i].text = buttonText;
+		Texto[i].fontSize = fontSize;
+		Texto[i].pos.x = textX;
+		Texto[i].pos.y = textY;
+		Texto[i].backgroundBttn.x = textX - 10; 
+		Texto[i].backgroundBttn.y = textY - 3;  
+		Texto[i].backgroundBttn.width = textWidth + 20; 
+		Texto[i].backgroundBttn.height = 50;	
+	}
 }
 
 void DrawSinglePlayer()
@@ -140,7 +123,7 @@ void CheckQuit()
 void DrawButtons()
 {
 	BeginDrawing();
-	DrawRectangleGradientV(GetScreenWidth() / 2 - 400, GetScreenHeight() / 2 - 300, 850, 600, BEIGE, Fade(RED, 1.0f));
+	DrawRectangleGradientV(GetScreenWidth() / 2 - 512, GetScreenHeight() / 2 - 384, static_cast <int>(SCREEN_WIDTH), static_cast <int>(SCREEN_HEIGTH), BEIGE, Fade(RED, 1.0f));
 	DrawSinglePlayer();
 	DrawInstruction();
 	DrawCredits();
