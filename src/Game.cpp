@@ -3,7 +3,6 @@
 #include<iostream>
 #include"Menu.h"
 
-
 using namespace std;
 
 static void Init();
@@ -33,9 +32,7 @@ namespace game
 		MainLoop();
 		Close();
 	}
-
 }
-
 
 static void Init()
 {
@@ -59,15 +56,15 @@ static void Init()
 
 void Update()
 {
-	if (IsKeyPressed(KEY_P) || IsKeyPressed(KEY_ESCAPE))
+	/*if (IsKeyPressed(KEY_P) || IsKeyPressed(KEY_ESCAPE))
 	{
 		pause = !pause;
 	}
 
-	if (!pause)
-	{
+	if (!pause)*/
+	//{
 		UpdateShip(ship);
-	}
+	//}
 }
 
 /*static*/ void Close()
@@ -100,9 +97,12 @@ void Update()
 
 /*static*/ void GameLoop()
 {
-	if (IsKeyPressed(KEY_ESCAPE))
+	if (IsKeyPressed(KEY_ESCAPE)||IsKeyPressed(KEY_P))
 	{
 		pause = !pause;
+		cout << "pause" << endl;
+		cout << pause << endl;
+		//DrawPause();
 	}
 
 	if (!pause)
@@ -110,16 +110,15 @@ void Update()
 		Update();
 	}
 	else
-	{
-		
+	{	
 		DrawPause();
-
 		
 		if (IsKeyPressed(KEY_R))
 		{
-			
 			ship = CreateShip();  
-			pause = false;        
+			pause = false; 
+			cout << "restart" << endl;
+			cout << pause << endl;
 		}
 		else if (IsKeyPressed(KEY_ESCAPE))
 		{
@@ -127,6 +126,7 @@ void Update()
 			
 			menu = MenuScenes::MainMenu;  
 			pause = false;               
+			cout << pause << endl;
 		}
 	}
 
@@ -173,8 +173,6 @@ void WindowInstructions()
 	}
 }
 
-
-
 void backMenu()
 {
 	if (IsKeyPressed(KEY_ESCAPE))
@@ -182,6 +180,7 @@ void backMenu()
 		menu = MenuScenes::MainMenu;
 	}
 }
+
 void DrawPause()
 {
 	BeginDrawing();
@@ -194,5 +193,4 @@ void DrawPause()
 		DrawCredit();
 	
 	EndDrawing();
-
 }
