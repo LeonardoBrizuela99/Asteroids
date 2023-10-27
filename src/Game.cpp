@@ -19,6 +19,7 @@ void CreditsWindow();
 void InitializTexts();*/
 
  SpaceShip ship;
+ 
 
 /*static*/ bool exitWindow = false;
 /*static*/ bool pause = false;
@@ -140,14 +141,13 @@ void WindowInstructions()
 	DrawRectangleGradientV(GetScreenWidth() / 2 - 512, GetScreenHeight() / 2 - 384, 1024, 768, BEIGE, Fade(RED, 1.0f));
 	DrawText("Use Up/Down to move rigth paddles", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 - 10, 40, WHITE);
 	DrawText("Use W/S to move left paddles", GetScreenWidth() / 2 - 300, GetScreenHeight() / 2 - 100, 40, WHITE);
-	DrawText("(ESC) Back", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 + 200, 40, WHITE);
-
+	//DrawText("(ESC) Back", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 + 200, 40, WHITE);
+	
+	DrawBack();
+	CheckBack();
 	EndDrawing();
 
-	if (IsKeyPressed(KEY_ESCAPE))
-	{
-		menu = MenuScenes::MainMenu;
-	}
+	backMenu();
 }
 
  void UpdateMenu()
@@ -155,6 +155,7 @@ void WindowInstructions()
 	 CheckSinglePlayer();
 	 CheckInstructions();
 	 CheckCredits();
+	 CheckBack();
 	 CheckQuit();
 }
 
@@ -164,13 +165,13 @@ void WindowInstructions()
 
 	DrawRectangleGradientV(GetScreenWidth() / 2 - 512, GetScreenHeight() / 2 - 384, 1024, 768, BEIGE, Fade(RED, 1.0f));
 	DrawText("Code by: Leonardo Brizuela", GetScreenWidth() / 2 - 300, GetScreenHeight() / 2 - 10, 40, WHITE);
-	DrawText("(ESC) Back", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 + 200, 40, WHITE);
+	//DrawText("(ESC) Back", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 + 200, 40, WHITE);
+	DrawBack();
+	CheckBack();
 	EndDrawing();
-
-	if (IsKeyPressed(KEY_ESCAPE))
-	{
-		menu = MenuScenes::MainMenu;
-	}
+	backMenu();
+	
+	
 }
 
 void backMenu()
@@ -190,7 +191,14 @@ void DrawPause()
 		DrawText("Press (P) to continue the game ", GetScreenWidth() / 2 - 330, GetScreenHeight() / 2, 38, WHITE);
 		DrawText("Press (R) to restart the game ", GetScreenWidth() / 2 - 330, GetScreenHeight() / 2-100, 38, WHITE);
 		DrawText("Press (ESC) back to menu ", GetScreenWidth() / 2 - 330, GetScreenHeight() / 2-50, 38, WHITE);
+		DrawBack();
 		DrawCredit();
 	
 	EndDrawing();
+}
+
+void ButtomPause()
+{
+	
+	
 }

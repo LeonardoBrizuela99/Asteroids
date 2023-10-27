@@ -24,7 +24,6 @@ struct Buttons
 };
 extern Buttons Texto[4];
 
-
 void InitializeTexts();
 void CheckSinglePlayer();
 void CheckInstructions();
@@ -35,6 +34,7 @@ void DrawButtons();
 void DrawSinglePlayer();
 void DrawInstruction();
 void DrawCredits();
-
+void CheckBack();
+void DrawBack();
 
 void DrawQuit();
