@@ -64,6 +64,7 @@ void Update()
 
 	if (!pause)*/
 	//{
+
 		UpdateShip(ship);
 	//}
 }
