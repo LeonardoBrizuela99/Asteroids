@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include"Bullets.h"
+
 
 struct Circle
 {
@@ -16,8 +18,8 @@ struct SpaceShip
     float maxSpeed;
     Vector2 velocity;
     Color color;
+    Bullet bullets[MaxBullets];
 };
-
 
 SpaceShip CreateShip();
 Circle GetCircle(SpaceShip& ship);

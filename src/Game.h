@@ -4,6 +4,7 @@
 #include<iostream>
 #include"Menu.h"
 #include"Ship.h"
+#include"WindowSize.h"
 
 using namespace std;
 /*static*/ void Update();
@@ -15,8 +16,7 @@ void UpdateMenu();
 void CreditsWindow();
 void backMenu();
 
-const float SCREEN_WIDTH = 1024.0f;
-const float SCREEN_HEIGTH = 768.0f;
+
 
 namespace game
 {

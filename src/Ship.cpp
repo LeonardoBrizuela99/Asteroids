@@ -1,9 +1,10 @@
 #include "Ship.h"
 #include"raylib.h"
+#include"WindowSize.h"
 #include <cmath>
+#include<iostream>
 
-const float SCREEN_WIDTH = 1024.0f;
-const float SCREEN_HEIGTH = 768.0f;
+using namespace std;
  SpaceShip CreateShip()
 {
 	SpaceShip ship;
@@ -15,9 +16,7 @@ const float SCREEN_HEIGTH = 768.0f;
 	ship.velocity = { 0, 0 };
 	ship.acceleration = 100.0f;
     ship.maxSpeed = 230.0f;
-   
 	return ship;
-
 }
 
  Circle GetCircle(SpaceShip& ship)
@@ -29,7 +28,6 @@ const float SCREEN_HEIGTH = 768.0f;
  {
 	 DrawCircleV({ ship.x,ship.y },ship.radius, ship.color);
  }
- 
 
  void MoveShip(SpaceShip& ship)
  {
@@ -37,24 +35,22 @@ const float SCREEN_HEIGTH = 768.0f;
      Vector2 direction = { mousePosition.x - ship.x, mousePosition.y - ship.y };
      float speed = sqrt(ship.velocity.x * ship.velocity.x + ship.velocity.y * ship.velocity.y);
      float scale = ship.maxSpeed / speed;
-	 
+
      if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
      {
          float length = sqrt(direction.x * direction.x + direction.y * direction.y);
          direction.x /= length;
          direction.y /= length;
-         ship.velocity.x += direction.x*ship.acceleration * GetFrameTime();
-         ship.velocity.y += direction.y*ship.acceleration  * GetFrameTime();
+         ship.velocity.x += direction.x * ship.acceleration * GetFrameTime();
+         ship.velocity.y += direction.y * ship.acceleration * GetFrameTime();
+     }
 
-     }   
-
-     
      if (speed >= ship.maxSpeed)
      {
-         
-         ship.velocity.x *= scale;//*GetFrameTime();
-             ship.velocity.y *= scale;//*GetFrameTime();
+         ship.velocity.x *= scale;
+         ship.velocity.y *= scale;
      }
+     CreateBullets({ship.x, ship.y}, ship.bullets);
 
          ship.x += ship.velocity.x * GetFrameTime();
          ship.y += ship.velocity.y * GetFrameTime(); 
@@ -65,30 +61,28 @@ const float SCREEN_HEIGTH = 768.0f;
  {
 	 MoveShip(ship);
      Wall(ship);
+     UpadateBullets(ship.bullets);
  }
 
  void Wall(SpaceShip& ship)
  {
-     
-         
          if (ship.x > SCREEN_WIDTH + ship.radius)
          {
-             ship.x = -ship.radius; //  aparece en el lado izquierdo
+             ship.x = -ship.radius; 
          }
         
          else if (ship.x < -ship.radius)
          {
-             ship.x = SCREEN_WIDTH + ship.radius; // aparece en el lado derecho
+             ship.x = SCREEN_WIDTH + ship.radius;
          }
         
          if (ship.y > SCREEN_HEIGTH + ship.radius)
          {
-             ship.y = -ship.radius; // aparece en la parte superior
+             ship.y = -ship.radius; 
          }
          
          else if (ship.y < -ship.radius)
          {
-             ship.y = SCREEN_HEIGTH + ship.radius; // aparece en la parte inferior
+             ship.y = SCREEN_HEIGTH + ship.radius; 
          }
-     
  }
