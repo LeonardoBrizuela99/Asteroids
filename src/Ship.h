@@ -1,7 +1,6 @@
 #include "raylib.h"
 #include"Bullets.h"
 
-
 struct Circle
 {
     Vector2 position;

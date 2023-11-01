@@ -19,6 +19,7 @@ void CreditsWindow();
 void InitializTexts();*/
 
  SpaceShip ship;
+ Meteor meteor;
  
 
 /*static*/ bool exitWindow = false;
@@ -41,6 +42,7 @@ static void Init()
 	SetExitKey(KEY_NULL);
 	InitializeTexts();
 	ship = CreateShip();
+	meteor = CreateMeteor();
 }
 
 /*static*/ void MainLoop()
@@ -57,16 +59,8 @@ static void Init()
 
 void Update()
 {
-	/*if (IsKeyPressed(KEY_P) || IsKeyPressed(KEY_ESCAPE))
-	{
-		pause = !pause;
-	}
-
-	if (!pause)*/
-	//{
-
 		UpdateShip(ship);
-	//}
+		UpdateMeteor(meteor);
 }
 
 /*static*/ void Close()
@@ -88,6 +82,7 @@ void Update()
 	else
 	{
 		DrawShip(ship);
+		DrawMeteor(meteor);
 	}
 	
 	EndDrawing();

@@ -1,6 +1,9 @@
 #include "Bullets.h"
 #include"WindowSize.h"
 #include"raymath.h"
+#include<iostream>
+#include<string>
+using namespace std;
 
 void CreateBullets(Vector2 spawPositions, Bullet bullets [MaxBullets])
 {

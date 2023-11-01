@@ -4,6 +4,7 @@
 #include<iostream>
 #include"Menu.h"
 #include"Ship.h"
+#include"Asteroids.h"
 #include"WindowSize.h"
 
 using namespace std;
